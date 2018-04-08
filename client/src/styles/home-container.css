@@ -1,0 +1,12 @@
+.content {
+  margin: 20px 0;
+  padding: .5em 1em;
+}
+
+.icon {
+  margin: 0 5px;
+}
+
+.icon:hover{
+  cursor: pointer;
+}

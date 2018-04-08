@@ -1,0 +1,20 @@
+.nav-link:hover {
+  cursor: pointer;
+}
+
+form {
+  text-align: left;
+}
+
+.password-strength-require-font {
+  font-size: .8em;
+  margin-right: 10px;
+}
+
+.fa-check {
+  color: green;
+}
+
+.requirement {
+  margin-bottom: 0px;
+}
