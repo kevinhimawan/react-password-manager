@@ -5,15 +5,22 @@
   "dependencies": {
     "axios": "^0.18.0",
     "bcryptjs": "^2.4.3",
+    "enzyme": "^3.3.0",
     "firebase": "^4.12.1",
+    "jsonwebtoken": "^8.2.1",
+    "moment": "^2.22.0",
     "react": "^16.3.1",
+    "react-addons-test-utils": "^15.6.2",
     "react-dom": "^16.3.1",
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.2.2",
     "react-router-redux": "^4.0.8",
     "react-scripts": "1.1.4",
+    "react-test-render": "^1.1.1",
     "redux": "^3.7.2",
-    "redux-thunk": "^2.2.0"
+    "redux-logger": "^3.0.6",
+    "redux-thunk": "^2.2.0",
+    "sweetalert": "^2.1.0"
   },
   "scripts": {
     "start": "react-scripts start",

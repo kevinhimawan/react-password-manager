@@ -10,3 +10,9 @@
 .icon:hover{
   cursor: pointer;
 }
+.show {
+  margin-left: 5px;
+}
+.show:hover {
+  cursor: pointer;
+}

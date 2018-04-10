@@ -3,10 +3,13 @@ import { connect } from 'react-redux'
 import {Link} from 'react-router-dom'
 import { push } from 'react-router-redux'
 import { bindActionCreators } from 'redux'
-import { getAllData, postManage, openModalAdd, deleteManage, editManage, search } from '../store/user.action/action.Action'
+import { getAllData, postManage, openModalAdd, deleteManage, editManage, search, passwordShow } from '../store/user.action/action.Action'
 import { signout_user } from '../store/user.login/login.Action'
 import '../styles/home.css'
 import swal from 'sweetalert'
+
+// Validation
+import PropTypes from 'prop-types';
 
 // Components
 import  HomeContainer from './Home/HomeContainer.jsx'
@@ -18,7 +21,9 @@ class Home extends Component {
   constructor() {
     super()
     this.state = {
-      listId: ''
+      listId: '',
+      url: '',
+      username: ''
     }
   }
   componentDidMount () {
@@ -39,7 +44,7 @@ class Home extends Component {
     const userid = localStorage.getItem('userid')
     this.props.postManage({
       form: value,
-      userid: userid
+      userid: userid,
     })
   }
 
@@ -47,7 +52,7 @@ class Home extends Component {
     this.props.openModalAdd()
   }
 
-  deleteManage = (id) => {
+  deleteManage = (id, url, username) => {
     swal({
       title: 'Removed Item',
       text: 'Are you sure?',
@@ -58,7 +63,7 @@ class Home extends Component {
       }
       }).then ((value) => {
       if (value === 'ok') {
-        this.props.deleteManage(id)
+        this.props.deleteManage({id, url, username})
       }
     })
   }
@@ -76,6 +81,22 @@ class Home extends Component {
 
   searchKey = (value) => {
     this.props.search({value})
+  }
+
+  showPassword = (url, username) => {
+    this.setState({
+      url:url,
+      username: username
+    })
+  }
+
+  getRealPass = () => {
+    let obj = {
+      url: this.state.url,
+      username: this.state.username,
+      data: this.props.action.data
+    }
+    this.props.passwordShow(obj)
   }
 
   render() {
@@ -101,7 +122,9 @@ class Home extends Component {
           <HomeContainer
             deleteManage={this.deleteManage}
             editManage={this.editManage}
-            parseId={this.parseId}></HomeContainer>
+            parseId={this.parseId}
+            showPassword={this.showPassword}
+            getRealPass={this.getRealPass}></HomeContainer>
             <EditManage
             editForm={this.submitEdit}></EditManage>
         </div>
@@ -117,7 +140,7 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({
-  getAllData, signout_user, postManage, openModalAdd, deleteManage, editManage, search
+  getAllData, signout_user, postManage, openModalAdd, deleteManage, editManage, search, passwordShow
 }, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home)

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import moment from 'moment'
 import { connect } from 'react-redux'
-import $ from 'jquery'
 import swal from 'sweetalert';
 
 class ModalAdd extends Component {
@@ -61,10 +60,6 @@ class ModalAdd extends Component {
     }
   }
 
-  onChangeCheck = (e) => {
-    
-  }
-
   submit = () => {
     if (this.state.uppercase && this.state.lowercase && this.state.special && this.state.number && this.state.fiveDigits ) {
       let obj = {
@@ -74,12 +69,15 @@ class ModalAdd extends Component {
         created: moment().format('LLL'),
         updated: moment().format('LLL')
       }
+      
       this.props.submitForm(obj)
     } else {
       swal ({
         title: 'Nothing has been added',
         icon: 'warning',
         button: 'OK'
+      }).then(() => {
+
       })
     }
   }
